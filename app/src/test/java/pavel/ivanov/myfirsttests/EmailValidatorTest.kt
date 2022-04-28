@@ -2,6 +2,7 @@ package pavel.ivanov.myfirsttests
 
 import org.junit.Assert
 import org.junit.Test
+import pavel.ivanov.myfirsttests.view.EmailValidator
 
 class EmailValidatorTest {
 
