@@ -1,6 +1,5 @@
 package pavel.ivanov.myfirsttests.model
 
-import android.app.appsearch.SearchResult
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

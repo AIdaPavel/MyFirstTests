@@ -2,7 +2,6 @@ package pavel.ivanov.myfirsttests.view
 
 import pavel.ivanov.myfirsttests.model.SearchResult
 
-
 internal interface ViewContract {
     fun displaySearchResults(
         searchResults: List<SearchResult>,
