@@ -6,19 +6,21 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.activity_main.*
+import pavel.ivanov.myfirsttests.BuildConfig
+import pavel.ivanov.myfirsttests.R
+import pavel.ivanov.myfirsttests.model.SearchResult
+import pavel.ivanov.myfirsttests.presenter.RepositoryContract
+import pavel.ivanov.myfirsttests.presenter.search.PresenterSearchContract
+import pavel.ivanov.myfirsttests.presenter.search.SearchPresenter
+import pavel.ivanov.myfirsttests.repository.FakeGitHubRepository
+import pavel.ivanov.myfirsttests.repository.GitHubApi
+import pavel.ivanov.myfirsttests.repository.GitHubRepository
+import pavel.ivanov.myfirsttests.view.details.DetailsActivity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
-import pavel.ivanov.myfirsttests.R
-import pavel.ivanov.myfirsttests.model.SearchResult
-import pavel.ivanov.myfirsttests.presenter.PresenterContract
-import pavel.ivanov.myfirsttests.presenter.search.PresenterSearchContract
-import pavel.ivanov.myfirsttests.presenter.search.SearchPresenter
-import pavel.ivanov.myfirsttests.repository.GitHubApi
-import pavel.ivanov.myfirsttests.repository.GitHubRepository
-import pavel.ivanov.myfirsttests.view.ViewContract
-import pavel.ivanov.myfirsttests.view.details.DetailsActivity
 
 class MainActivity : AppCompatActivity(), ViewSearchContract {
 
@@ -65,8 +67,12 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         })
     }
 
-    private fun createRepository(): GitHubRepository {
-        return GitHubRepository(createRetrofit().create(GitHubApi::class.java))
+    private fun createRepository(): RepositoryContract {
+        return if (BuildConfig.BUILD_TYPE == FAKE) {
+            FakeGitHubRepository()
+        } else {
+            GitHubRepository(createRetrofit().create(GitHubApi::class.java))
+        }
     }
 
     private fun createRetrofit(): Retrofit {
@@ -80,6 +86,12 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         searchResults: List<SearchResult>,
         totalCount: Int
     ) {
+        with(totalCountTextView) {
+            visibility = View.VISIBLE
+            text =
+                String.format(Locale.getDefault(), getString(R.string.results_count), totalCount)
+        }
+
         this.totalCount = totalCount
         adapter.updateResults(searchResults)
     }
@@ -102,5 +114,6 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     companion object {
         const val BASE_URL = "https://api.github.com"
+        const val FAKE = "FAKE"
     }
 }
