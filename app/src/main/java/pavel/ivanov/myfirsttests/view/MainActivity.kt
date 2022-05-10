@@ -1,22 +1,22 @@
 package pavel.ivanov.myfirsttests.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import pavel.ivanov.myfirsttests.R
-import pavel.ivanov.myfirsttests.databinding.ActivityMainBinding
 import pavel.ivanov.myfirsttests.model.SearchResult
 import pavel.ivanov.myfirsttests.presenter.PresenterContract
 import pavel.ivanov.myfirsttests.presenter.SearchPresenter
 import pavel.ivanov.myfirsttests.repository.GitHubApi
 import pavel.ivanov.myfirsttests.repository.GitHubRepository
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 
 class MainActivity : AppCompatActivity(), ViewContract {
 
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), ViewContract {
     }
 
     private fun setQueryListener() {
-        searchEditText.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+        searchEditText.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val query = searchEditText.text.toString()
                 if (query.isNotBlank()) {
