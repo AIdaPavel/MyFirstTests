@@ -11,6 +11,7 @@ import pavel.ivanov.myfirsttests.model.SearchResult
 import pavel.ivanov.myfirsttests.presenter.search.SearchPresenter
 import pavel.ivanov.myfirsttests.repository.GitHubRepository
 import pavel.ivanov.myfirsttests.view.ViewContract
+import pavel.ivanov.myfirsttests.view.search.ViewSearchContract
 import retrofit2.Response
 
 //Тестируем наш Презентер
@@ -22,7 +23,7 @@ class SearchPresenterTest {
     private lateinit var repository: GitHubRepository
 
     @Mock
-    private lateinit var viewContract: ViewContract
+    private lateinit var viewContract: ViewSearchContract
 
     @Before
     fun setUp() {
