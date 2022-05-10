@@ -8,7 +8,7 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import pavel.ivanov.myfirsttests.model.SearchResponse
 import pavel.ivanov.myfirsttests.model.SearchResult
-import pavel.ivanov.myfirsttests.presenter.SearchPresenter
+import pavel.ivanov.myfirsttests.presenter.search.SearchPresenter
 import pavel.ivanov.myfirsttests.repository.GitHubRepository
 import pavel.ivanov.myfirsttests.view.ViewContract
 import retrofit2.Response

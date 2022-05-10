@@ -1,4 +1,4 @@
-package pavel.ivanov.myfirsttests.view
+package pavel.ivanov.myfirsttests.view.search
 
 import android.view.LayoutInflater
 import android.view.View
