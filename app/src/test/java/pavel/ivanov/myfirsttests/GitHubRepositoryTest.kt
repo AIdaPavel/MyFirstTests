@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations
 import pavel.ivanov.myfirsttests.model.SearchResponse
 import pavel.ivanov.myfirsttests.repository.GitHubApi
 import pavel.ivanov.myfirsttests.repository.GitHubRepository
+import pavel.ivanov.myfirsttests.repository.RepositoryCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +34,7 @@ class GitHubRepositoryTest {
         val call = mock(Call::class.java) as Call<SearchResponse?>
 
         `when`(gitHubApi.searchGithub(searchQuery)).thenReturn(call)
-        repository.searchGithub(searchQuery, mock(GitHubRepository.GitHubRepositoryCallback::class.java))
+        repository.searchGithub(searchQuery, mock(any()))
         verify(gitHubApi, times(1)).searchGithub(searchQuery)
     }
 
@@ -41,7 +42,7 @@ class GitHubRepositoryTest {
     fun searchGithub_TestCallback() {
         val searchQuery = "some query"
         val response = mock(Response::class.java) as Response<SearchResponse?>
-        val gitHubRepositoryCallBack = mock(GitHubRepository.GitHubRepositoryCallback::class.java)
+        val gitHubRepositoryCallBack = mock(RepositoryCallback::class.java)
 
         val call = object : Call<SearchResponse?> {
             override fun enqueue(callback: Callback<SearchResponse?>) {
@@ -89,7 +90,7 @@ class GitHubRepositoryTest {
         val searchQuery = "some query"
         val call = mock(Call::class.java) as Call<SearchResponse?>
         val callBack = mock(Callback::class.java) as Callback<SearchResponse?>
-        val gitHubRepositoryCallBack = mock(GitHubRepository.GitHubRepositoryCallback::class.java)
+        val gitHubRepositoryCallBack = mock(RepositoryCallback::class.java)
         val response = mock(Response::class.java) as Response<SearchResponse?>
 
         `when`(gitHubApi.searchGithub(searchQuery)).thenReturn(call)
