@@ -10,12 +10,12 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.uiautomator.v18.BuildConfig
 import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import pavel.ivanov.myfirsttests.BuildConfig
 import pavel.ivanov.myfirsttests.R
 import pavel.ivanov.myfirsttests.view.search.MainActivity
 

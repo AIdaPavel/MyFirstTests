@@ -21,6 +21,7 @@ import pavel.ivanov.myfirsttests.view.details.DetailsActivity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import kotlinx.android.synthetic.main.activity_details.totalCountTextView as totalCountTextView1
 
 class MainActivity : AppCompatActivity(), ViewSearchContract {
 
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     }
 
     private fun createRepository(): RepositoryContract {
-        return if (BuildConfig.BUILD_TYPE == FAKE) {
+        return if (BuildConfig.TYPE == FAKE) {
             FakeGitHubRepository()
         } else {
             GitHubRepository(createRetrofit().create(GitHubApi::class.java))

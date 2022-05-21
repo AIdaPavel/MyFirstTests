@@ -8,6 +8,7 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import junit.framework.TestCase
 import org.junit.After
@@ -15,6 +16,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import pavel.ivanov.myfirsttests.R
+import pavel.ivanov.myfirsttests.TEST_NUMBER_OF_RESULTS_MINUS_1
+import pavel.ivanov.myfirsttests.TEST_NUMBER_OF_RESULTS_PLUS_1
+import pavel.ivanov.myfirsttests.TEST_NUMBER_OF_RESULTS_ZERO
 import pavel.ivanov.myfirsttests.view.details.DetailsActivity
 
 @RunWith(AndroidJUnit4::class)
@@ -49,7 +53,7 @@ class DetailsActivityEspressoTest {
 
     @Test
     fun activityTextView_HasText() {
-        val assertion = ViewAssertions.matches(ViewMatchers.withText("Number of results: 0"))
+        val assertion = ViewAssertions.matches(withText(TEST_NUMBER_OF_RESULTS_ZERO))
         Espresso.onView(withId(R.id.totalCountTextView)).check(assertion)
     }
 
@@ -77,14 +81,14 @@ class DetailsActivityEspressoTest {
     fun activityButtonIncrement_IsWorking() {
         Espresso.onView(withId(R.id.incrementButton)).perform(ViewActions.click())
         Espresso.onView(withId(R.id.totalCountTextView))
-            .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: 1")))
+            .check(ViewAssertions.matches(withText(TEST_NUMBER_OF_RESULTS_PLUS_1)))
     }
 
     @Test
     fun activityButtonDecrement_IsWorking() {
         Espresso.onView(withId(R.id.decrementButton)).perform(ViewActions.click())
         Espresso.onView(withId(R.id.totalCountTextView))
-            .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: -1")))
+            .check(ViewAssertions.matches(withText(TEST_NUMBER_OF_RESULTS_MINUS_1)))
     }
 
     @After

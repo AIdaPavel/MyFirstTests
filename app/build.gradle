@@ -6,6 +6,7 @@ plugins {
 
 android {
     compileSdk 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "pavel.ivanov.myfirsttests"
@@ -30,6 +31,35 @@ android {
 
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        fake {
+            applicationIdSuffix ".fake"
+            versionNameSuffix "-fake"
+            buildConfigField "String", "TYPE", '"FAKE"'
+        }
+        real {
+            applicationIdSuffix ".real"
+            versionNameSuffix "-real"
+            buildConfigField "String", "TYPE", '"REAL"'
+        }
+    }
+
+    sourceSets {
+        androidTest {
+            java.srcDirs += "src/sharedTestData/java"
+        }
+        test {
+            java.srcDirs += "src/sharedTestData/java"
+        }
     }
 
     buildFeatures {
