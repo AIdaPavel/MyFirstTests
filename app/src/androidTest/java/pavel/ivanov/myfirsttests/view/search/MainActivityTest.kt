@@ -31,11 +31,10 @@ class MainActivityTest {
     fun mainActivityTest() {
         val materialButton = Espresso.onView(
             Matchers.allOf(
-                withId(R.id.toDetailsActivityButton),
-                ViewMatchers.withText("to details"),
+                withId(R.id.toDetailsActivityButton), ViewMatchers.withText("to details"),
                 childAtPosition(
                     childAtPosition(
-                        withId(R.id.content),
+                        withId(android.R.id.content),
                         0
                     ),
                     2
@@ -50,7 +49,7 @@ class MainActivityTest {
                 withId(R.id.incrementButton), ViewMatchers.withText("+"),
                 childAtPosition(
                     childAtPosition(
-                        ViewMatchers.withId(R.id.content),
+                        withId(android.R.id.content),
                         0
                     ),
                     2
@@ -63,7 +62,7 @@ class MainActivityTest {
         val textView = Espresso.onView(
             Matchers.allOf(
                 withId(R.id.totalCountTextView), ViewMatchers.withText("Number of results: 1"),
-                ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.content))),
+                ViewMatchers.withParent(ViewMatchers.withParent(withId(android.R.id.content))),
                 ViewMatchers.isDisplayed()
             )
         )
@@ -72,7 +71,7 @@ class MainActivityTest {
         val button = Espresso.onView(
             Matchers.allOf(
                 withId(R.id.incrementButton), ViewMatchers.withText("+"),
-                ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.content))),
+                ViewMatchers.withParent(ViewMatchers.withParent(withId(android.R.id.content))),
                 ViewMatchers.isDisplayed()
             )
         )
